@@ -1,0 +1,78 @@
+※분류 모델 정리
+1. DecisionTreeClassifier
+ 모델 임포트: from sklearn.tree import DecisionTreeClassifier
+ 기법: 결정트리 기법. 
+ - feature들을 이용해 불순도의 척도인 지니계수를 낮추는 방향으로 분류.
+ - 지니계수가 0에 가까울 수록 순수한 데이터임을 의미하고, 분류가 된 것.
+ - leaf가 너무 많으면 과적합의 문제가 있음.
+ 주요 파라미터:
+ [max_depth, min_samples_split, min_samples_leaf]
+
+2-1. VotingClassifier
+ 모델 임포트: from sklearn.ensemble import VotingClassifier
+ 기법: 앙상블 - 보팅
+ - 서로 다른알고리즘을 가진 분류기가 각각 예측하고, 보팅을 통해 예측을 결정
+ - 하드 보팅: 다수결, 소프트보팅: 평균
+ 주요 Parameters:
+ [estimators=[(이름1, 분류기1), (이름2, 분류기2)], voting='hard']
+
+2-2. RandomForestClassifier
+ 모델 임포트: from sklearn.ensemble import RandomForestClassifier
+ 기법: 앙상블 - 배깅(bootstrap aggregating)방식.
+ - 일부가 중첩되게 샘플링된 데이터를 이용
+ - 여러개의 결정트리를 이용해 학습하고 소프트보팅을 통해 예측을 결정
+ - 이는 결정트리의 과적합 문제를 줄여줌
+ 주요 파라미터:
+ [n_estimators, max_depth, min_samples_split, min_samples_leaf]
+
+3-1. GradientBoostingClassifier
+ 모델 임포트: from sklearn.ensemble import GradientBoostingClassifier
+ 기법: 앙상블 - 부스팅
+ - 잘못 예측한 데이터에 가중치를 부여하며 학습
+ - 시간이 매우 오래걸림.
+ 주요 파라미터:
+ [learning_rate, n_estimators, subsample]
+
+3-2. XGBoostClassifier
+ 모델 임포트: from xgboost import XGBClassifier
+ 기법: 앙상블 - 부스팅
+ - GBM보다 빠름 (병렬처리)
+ - 과적합 규제 가능
+ - Tree pruning으로 긍정이득이 없는 분할을 가지치기
+ - 자체 내장된 교차검증으로 조기중단기능
+ - from xgboost import plot_importance 메소드로 피처별 중요도 시각화 가능
+ 주요 파라미터:
+ [learning_rate, n_estimators, min_child_weight(가지 나눌지 결정하는 가중치 총합. 과적합 방지),  max_depth, early_stopping_rounds, eval_metric, subsample, verbose]
+
+3-3. LightGBM
+ 모델 임포트: from lightgbm import LGBMClassifier
+ 기법: 앙상블 - 부스팅
+ - XGB보다 빠름 (중심트리기법 사용)
+ - XGB와 비슷한 성능
+ - from lightgbm import plot_importance 메소드로 피처별 중요도 시각화 가능
+ 주요 파라미터:
+ [learning_rate, n_estimatores, max_depth, min_child_samples, early_stopping_rounds,  min_child_weight, eval_metric, verbose] 
+
+4. KneighborsClassifier
+ 모델 임포트: from sklearn.neighbors import KNeiborsClassifier
+ 기법: 최소 근접 알고리즘
+ - 근접 거리를 기준으로 가까운 것들끼리 묶음
+ - 변수를 통해 그룹 안에 들어갈 수를 정할 수 있음
+ 주요 파라미터:
+ [n_neighbors]
+
+5. LogisticRegression
+ 모델 임포트: from sklearn.linear_model import LogisticRegression
+ 기법: 선형회귀로부터 파생
+ - 데이터가 모인 곳에 선형 회귀선이 아닌 시그모이드 함수 최적선을 찾음.
+ - S자로 생겼으며, 이 함수를 이용해 분류
+ 주요 파라미터:
+ [penalty='l2', C = {1/alpha}]	(C값이 작을 수록 규제가 강한 것)
+
+6. SVC(support vector classifier)
+ 모델 임포트: from sklearn.svm import SVC
+ 기법: SVM
+ - 개별 클래스 간의 최대 분류 마진을 찾아주고, 그 중간 경계선인 최적초평면을 기준으로 분류함
+ - 데이터가 비선형인 경우에 잘 작동하지 않는다.
+ 주요 파라미터:
+ [kernel = 'rbf']
