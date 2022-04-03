@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Selcet All(과제)</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+</script>
+</head>
+<body>
+    <nav>
+        <a href="./index.html">Home</a>
+        <a href="./blog_list.html">Blog</a>
+        <a href="./about_me.html">About Me</a>
+    </nav>
+    <h1>배경색 보여주기</h1>
+    <h2></h2>
+    <p>글자 색상 바꾸기</p>
+    <p>글자 색상 바꾸기</p>
+    <button id='one' onclick="f()">click</button>    
+    <button id='two' onclick="f()">click</button>
+    <button id='three' onclick="f()">click</button>
+    <button id='four' onclick="f()">click</button>
+    <button id='five' onclick="f()">click</button>
+    <button id='six' onclick="f()">click</button>
+    <script>        
+     
+        $('#one').click(
+            function f(){
+                $('h1').css('background-color','skyblue') ;
+            }
+        );
+        $('#two').click(
+            function f(){
+                $('p').css('color','red');
+            }
+        
+        );
+        $('#three').click(
+            function f(){
+                $('p').html('글자변경을 보여드렸습니다');
+            }
+        
+        );
+        $('#four').click(
+            function f(){
+                $('button').text('글자와 색상 변경');
+            }
+        
+        );
+        $('#five').click(
+            function f(){
+                $('button').css('color','blue').css('textDecoration','underline');
+            }
+        
+        );
+        $('#six').click(
+            function f(){
+                $('button').attr('href','https://www.naver.com/');
+            }
+        
+        );
+    </script>
+    <script>
+        $(document).ready(function(){
+            alert('2월9일 맑고 상쾌한 아침');
+        })
+    </script>
+
+    
+</body>
+</html>
