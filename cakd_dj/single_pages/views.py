@@ -1,11 +1,21 @@
-# Create your views here.
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Post
+from blog.models import Post
 
-class PostList(ListView):
-    model = Post
-    ordering = '-pk'
 
-class PostDetail(DetailView):
-    model = Post
+def landing(request):
+    recent_posts = Post.objects.order_by('-pk')[:3]
+
+    return render(
+        request,
+        'single_pages/landing.html',
+        {
+            'recent_posts': recent_posts,
+        }
+    )
+
+
+def about_me(request):
+    return render(
+        request,
+        'single_pages/about_me.html'
+    )
